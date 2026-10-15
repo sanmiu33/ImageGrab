@@ -1,0 +1,209 @@
+/* gallery.css —— 画廊页样式：简洁美观、响应式网格 */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f6fa;
+  color: #2b2f36;
+  font-family: system-ui, -apple-system, 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+}
+
+/* ---------- 顶部工具栏 ---------- */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  padding: 14px 24px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 版本号标识（确认运行的是新代码用） */
+.build-ver {
+  font-size: 12px;
+  font-weight: 400;
+  color: #98a0ad;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.actions button {
+  padding: 8px 16px;
+  border: 1px solid #d6dae2;
+  border-radius: 8px;
+  background: #fff;
+  color: #2b2f36;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.actions button:hover {
+  background: #f0f3f9;
+  border-color: #b9c1cf;
+}
+
+.actions button.primary {
+  background: linear-gradient(135deg, #4f7cff, #6a5cff);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+.actions button.primary:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.selected-count {
+  color: #5b6472;
+}
+
+/* ---------- 下载进度条 ---------- */
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* hidden 属性默认样式会被上面的 display:flex 覆盖，这里显式恢复 */
+.progress-wrap[hidden] {
+  display: none;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: #e6e9f0;
+  overflow: hidden;
+}
+
+.progress-inner {
+  height: 100%;
+  width: 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #4f7cff, #6a5cff);
+  transition: width 0.2s ease;
+}
+
+.progress-text {
+  white-space: nowrap;
+  color: #5b6472;
+}
+
+/* ---------- 响应式图片网格 ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 24px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* 点击整卡切换勾选 */
+.card label {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.thumb-wrap {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-conic-gradient(#f1f3f7 0% 25%, #fff 0% 50%) 0 0 / 16px 16px; /* 棋盘格底纹 */
+}
+
+.thumb-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid #eef0f4;
+}
+
+.card-meta input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #4f7cff;
+  cursor: pointer;
+}
+
+/* ---------- 加载失败：灰色占位（卡片保留、复选框可用） ---------- */
+.card.load-failed .thumb-wrap {
+  background: #e4e7ec; /* 覆盖棋盘格底纹 */
+}
+
+.card.load-failed .thumb-wrap::after {
+  content: '✕ 加载失败';
+  color: #98a0ad;
+  font-size: 12px;
+}
+
+/* 尺寸偏小（<100×100）提示：虚线橙框，仅提醒不禁用 */
+.card.small .thumb-wrap {
+  outline: 2px dashed #f0a24b;
+  outline-offset: -4px;
+}
+
+.card-size {
+  color: #5b6472;
+  font-size: 12px;
+}
+
+/* ---------- 空状态 ---------- */
+.empty {
+  padding: 80px 24px;
+  text-align: center;
+  color: #5b6472;
+}
+
+.empty-sub {
+  font-size: 12px;
+  color: #98a0ad;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>商品图片提取结果</title>
+  <link rel="stylesheet" href="gallery.css" />
+</head>
+<body>
+  <!-- 顶部工具栏：统计信息 + 全选/反选/下载 -->
+  <header class="toolbar">
+    <h1 class="title">已提取 <span id="total-count">0</span> 张图片 <span id="build-ver" class="build-ver"></span></h1>
+
+    <div class="actions">
+      <button id="btn-all" type="button">全选</button>
+      <button id="btn-invert" type="button">反选</button>
+      <span id="selected-count" class="selected-count">已选 0 张</span>
+      <button id="btn-download" type="button" class="primary" disabled>下载选中</button>
+    </div>
+
+    <!-- 下载进度条（下载时显示） -->
+    <div id="progress-wrap" class="progress-wrap" hidden>
+      <div class="progress-bar">
+        <div id="progress-inner" class="progress-inner"></div>
+      </div>
+      <span id="progress-text" class="progress-text"></span>
+    </div>
+  </header>
+
+  <!-- 图片网格 -->
+  <main id="grid" class="grid"></main>
+
+  <!-- 空状态 -->
+  <div id="empty" class="empty" hidden>
+    <p>没有提取到符合条件的图片（已自动过滤小于 100×100 的图）</p>
+    <p class="empty-sub">请回到商品详情页点击「获取图片」重新提取</p>
+  </div>
+
+  <script src="gallery.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+/* content.css —— 「获取图片」悬浮按钮与轻提示样式
+   注意：这是注入到电商页面里的样式，选择器务必带唯一前缀，避免污染/被污染 */
+
+/* 右下角悬浮按钮 */
+#egrab-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 2147483646;          /* 尽量高，但不占满 2147483647，避免与页面极端弹层冲突 */
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4f7cff, #6a5cff);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: system-ui, -apple-system, 'Microsoft YaHei', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(79, 124, 255, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  user-select: none;
+}
+
+/* hover 反馈：轻微上浮 + 阴影加深 */
+#egrab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 124, 255, 0.55);
+}
+
+#egrab-btn:active {
+  transform: translateY(0);
+}
+
+/* 提取中状态 */
+#egrab-btn.egrab-loading {
+  pointer-events: none;
+  opacity: 0.75;
+  cursor: wait;
+}
+
+/* 页面内轻提示 */
+#egrab-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 76px;
+  z-index: 2147483647;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(20, 20, 30, 0.85);
+  color: #fff;
+  font-size: 13px;
+  font-family: system-ui, -apple-system, 'Microsoft YaHei', sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  animation: egrab-fade-in 0.2s ease;
+}
+
+@keyframes egrab-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
